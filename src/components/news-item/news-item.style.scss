@@ -3,11 +3,24 @@
     padding: 10px;
     font-size: 14px;
 
+    &.hidden {
+        display: none;
+    }
+
     span {
         padding-left: 10px;
         font-size: 12px;
         display: flex;
     }
+
+    .upvote-btn {
+        background: url(https://news.ycombinator.com/grayarrow2x.gif);
+        display: inline-block;
+        height: 15px;
+        width: 15px;
+        cursor: pointer;
+    }
+
     .content {
         flex-grow: 1;
         display: flex;
@@ -16,6 +29,10 @@
     .url ,.date {
         font-size: 10px;
         color: grays;
+    }
+
+    .hide {
+        cursor: pointer;
     }
 
     h5 {

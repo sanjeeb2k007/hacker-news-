@@ -1,0 +1,13 @@
+.pagination {
+    display: block;
+    text-align: right;
+    font-weight: bold;
+    text-transform: capitalize;
+    
+    .prev, .next {
+        display: inline-block;
+        padding : 20px;
+        cursor: pointer;
+        color: orange;
+    }
+}
