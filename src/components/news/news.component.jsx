@@ -2,23 +2,12 @@ import React from   'react';
 import NewsItem from '../../components/news-item/news-item.component';
 import Pagination from '../../components/pagination/pagination.component';
 import './news.styles.scss';
-import {withRouter} from 'react-router-dom';
+import { connect } from "react-redux";
+import { fetchNews } from "../../redux/news/news.actions";
 
 class News extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            news: [],
-            pageNumber: 1,
-        };
-    }
-
-    componentDidMount () {
-        const urlParam =  new URLSearchParams(window.location.search).get('p');
-        fetch(`http://hn.algolia.com/api/v1/search?page=${urlParam ||this.state.pageNumber}`)
-          .then(response => response.json())
-          .then(response => { console.log(response.hits);this.setState({news :response.hits, pageNumber:response.page, hidden:true })});
+    componentDidMount() {
+        this.props.dispatch(fetchNews());
       }
 
       nextClick  = () => {
@@ -46,7 +35,7 @@ class News extends React.Component {
     render() {
         return (
             <div className='news-container'>
-                {this.state.news.map(({objectID,...otherProps }) => (
+                {this.props.news.map(({objectID,...otherProps }) => (
                     <NewsItem key={objectID} {...otherProps} data-key={objectID} />
                     ))}
                      <Pagination prevClick ={this.prevClick} nextClick = {this.nextClick} />
@@ -57,4 +46,10 @@ class News extends React.Component {
     }
 }
 
-export default withRouter(News);
+const mapStateToProps = state => ({
+    news: state.news.items,
+    loading: state.news.loading,
+    error: state.news.error
+  });
+  
+  export default connect(mapStateToProps)(News);
