@@ -28,7 +28,7 @@ class NewsItem extends React.Component {
      handleClick = props => async () => {
         const data_vote = {
           person_id: this.props['data-key'],
-          person_vote: this.state.personvote + 1
+          person_vote: this.state.personvote
         };
     
         const [{ vote }] = await this.getVotes(data_vote);

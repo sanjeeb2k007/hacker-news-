@@ -1,12 +1,13 @@
-export function fetchNews() {
+export function fetchNews(pageNumber) {
+  let fetchURL = pageNumber ? "http://hn.algolia.com/api/v1/search?page="+pageNumber : "http://hn.algolia.com/api/v1/search?tags=front_page" 
   return dispatch => {
-    dispatch(fetchNewsBegin());
-    return fetch("http://hn.algolia.com/api/v1/search?tags=front_page")
+    dispatch(fetchNewsBegin(pageNumber));
+    return fetch(fetchURL)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {
-        dispatch(fetchNewsSuccess(json.hits));
-        return json.hits;
+        dispatch(fetchNewsSuccess(json));
+        return json;
       })
       .catch(error => dispatch(fetchNewsFailure(error)));
   };
@@ -24,7 +25,7 @@ export const FETCH_NEWS_BEGIN   = 'FETCH_NEWS_BEGIN';
 export const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS';
 export const FETCH_NEWS_FAILURE = 'FETCH_NEWS_FAILURE';
 
-export const fetchNewsBegin = () => ({
+export const fetchNewsBegin = (pageNumber) => ({
   type: FETCH_NEWS_BEGIN
 });
 

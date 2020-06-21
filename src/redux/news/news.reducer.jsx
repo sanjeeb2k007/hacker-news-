@@ -3,7 +3,8 @@ import {FETCH_NEWS_BEGIN,FETCH_NEWS_SUCCESS,FETCH_NEWS_FAILURE} from './news.act
   const initialState = {
     items: [],
     loading: false,
-    error: null
+    error: null,
+    pageNumber: ''
   };
   
   export default function newsReducer(state = initialState, action) {
@@ -19,7 +20,8 @@ import {FETCH_NEWS_BEGIN,FETCH_NEWS_SUCCESS,FETCH_NEWS_FAILURE} from './news.act
         return {
           ...state,
           loading: false,
-          items: action.payload.news
+          items: action.payload.news.hits,
+          pageNumber:action.payload.news.page
         };
   
       case FETCH_NEWS_FAILURE:
