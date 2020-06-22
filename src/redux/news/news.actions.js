@@ -1,5 +1,5 @@
 export function fetchNews(pageNumber) {
-  let fetchURL = pageNumber ? "http://hn.algolia.com/api/v1/search?page="+pageNumber : "http://hn.algolia.com/api/v1/search?tags=front_page" 
+  let fetchURL = pageNumber ? "https://hn.algolia.com/api/v1/search?page="+pageNumber : "https://hn.algolia.com/api/v1/search?tags=front_page" 
   return dispatch => {
     dispatch(fetchNewsBegin(pageNumber));
     return fetch(fetchURL)
