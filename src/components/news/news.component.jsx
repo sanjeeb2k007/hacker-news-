@@ -1,6 +1,5 @@
 import React from   'react';
 import NewsItem from '../../components/news-item/news-item.component';
-import Pagination from '../../components/pagination/pagination.component';
 import './news.styles.scss';
 import { connect } from "react-redux";
 import { fetchNews } from "../../redux/news/news.actions";
