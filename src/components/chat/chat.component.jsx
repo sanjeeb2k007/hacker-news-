@@ -12,11 +12,7 @@ class ChartComp extends React.Component {
         
         </div>
       );
-    }
-    componentDidMount () {
-        console.log(this);
-      }
-      
+    } 
   }
 
   const mapStateToProps = state => ({

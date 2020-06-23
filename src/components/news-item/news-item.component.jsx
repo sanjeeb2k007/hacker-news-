@@ -21,10 +21,6 @@ class NewsItem extends React.Component {
         window.sessionStorage.setItem("isHidden", JSON.stringify(sessionStorageItem));       
      }
 
-     componentDidMount () {
-       console.log(window.sessionStorage.getItem("isHidden"));
-     }
-
      handleClick = props => async () => {
         const data_vote = {
           person_id: this.props['data-key'],
